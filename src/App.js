@@ -21,24 +21,25 @@ function App() {
     return;
   };
 
-  const StartQuiz = () => {
+  // const StartQuiz = () => {
+  //   let arr = [];
+  //   for (let i = 0; i < 3; i++) {
+  //     arr.push(randomRGB());
+  //   }
+  //   setList(arr);
+  //   setAnswer(arr[Math.floor(Math.random() * 3)]);
+  // };
+
+  useEffect(() => {
     let arr = [];
     for (let i = 0; i < 3; i++) {
       arr.push(randomRGB());
     }
     setList(arr);
     setAnswer(arr[Math.floor(Math.random() * 3)]);
-  };
-
-  useEffect(() => {
-    StartQuiz();
   }, [score.points]);
 
-  useEffect(() => {
-    function startQuiz() {
-      return console.log("reloged");
-    }
-  }, []);
+  // useEffect(() => {}, []);
 
   return (
     <div className="container">
