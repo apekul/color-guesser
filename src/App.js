@@ -1,9 +1,11 @@
 import "./style.css";
 import React, { useState, useEffect } from "react";
+import { ScoreBoard } from "./Components/ScoreBoard";
 
 function App() {
   const [list, setList] = useState([]);
   const [answer, setAnswer] = useState();
+  const [score, setScore] = useState({ points: 0, attempts: 0 });
 
   function randomRGB() {
     let obj = { r: 0, g: 0, b: 0 };
@@ -12,20 +14,35 @@ function App() {
   }
 
   const check = (e) => {
-    return e === answer ? console.log("WIN") : console.log("LOOSE");
+    const query = e === answer;
+    query
+      ? setScore((prev) => ({ ...prev, points: prev.points + 1 }))
+      : setScore((prev) => ({ ...prev, attempts: prev.attempts + 1 }));
+    return;
   };
 
-  useEffect(() => {
+  const StartQuiz = () => {
     let arr = [];
     for (let i = 0; i < 3; i++) {
       arr.push(randomRGB());
     }
     setList(arr);
     setAnswer(arr[Math.floor(Math.random() * 3)]);
+  };
+
+  useEffect(() => {
+    StartQuiz();
+  }, [score.points]);
+
+  useEffect(() => {
+    function startQuiz() {
+      return console.log("reloged");
+    }
   }, []);
 
   return (
     <div className="container">
+      <ScoreBoard score={score} />
       <div className="group">
         <div
           className="display"
@@ -34,7 +51,7 @@ function App() {
             backgroundColor: answer,
           }}
         >
-          ????
+          Guess the color
         </div>
         <div className="buttons">
           {list.map((v, i) => (
