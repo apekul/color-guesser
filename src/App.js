@@ -12,7 +12,6 @@ function App() {
   function randomRGB() {
     let obj = { r: 0, g: 0, b: 0 };
     Object.keys(obj).map((v) => (obj[v] = Math.floor(Math.random() * 255)));
-
     return colorCode
       ? "rgb(" + obj.r + "," + obj.g + "," + obj.b + ")"
       : "#" +
@@ -39,10 +38,12 @@ function App() {
 
   useEffect(() => {
     startQuiz();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [colorCode]);
 
   useEffect(() => {
     startQuiz();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [score.points]);
 
   return (
